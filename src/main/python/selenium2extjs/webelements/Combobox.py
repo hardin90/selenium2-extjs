@@ -34,6 +34,12 @@ class Combobox(ExtJSComponent):
         return value
 
     def set_value(self, value):
-        self.exec_script_on_extjs_cmp(
+        value = self.exec_script_on_extjs_cmp(
             "return extCmp.%s.dom.value='%s'" % (self.combobox_element, value)
+        )
+        return value
+
+    def click(self):
+        self.exec_script_on_extjs_cmp(
+            "return extCmp.%s.dom.click()" % self.combobox_element
         )
