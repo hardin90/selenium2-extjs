@@ -3,7 +3,7 @@
 from selenium2extjs.webelements.ExtJSComponent import ExtJSComponent
 
 
-class Combobox(ExtJSComponent):
+class ComboBox(ExtJSComponent):
     '''
     classdocs
     '''
@@ -13,7 +13,7 @@ class Combobox(ExtJSComponent):
         Constructor
         '''
         self.combobox_element = "inputEl"
-        super(Combobox, self).__init__(driver, query_type, query, top_element)
+        super(ComboBox, self).__init__(driver, query_type, query, top_element)
 
     def get_element_id(self):
         element_id = self.exec_script_on_extjs_cmp(
@@ -34,6 +34,12 @@ class Combobox(ExtJSComponent):
         return value
 
     def set_value(self, value):
-        self.exec_script_on_extjs_cmp(
+        value = self.exec_script_on_extjs_cmp(
             "return extCmp.%s.dom.value='%s'" % (self.combobox_element, value)
+        )
+        return value
+
+    def click(self):
+        self.exec_script_on_extjs_cmp(
+            "return extCmp.%s.dom.click()" % self.combobox_element
         )
