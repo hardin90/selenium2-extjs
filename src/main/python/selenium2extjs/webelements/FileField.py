@@ -24,6 +24,6 @@ class FileField(Field):
 
     def get_input_el(self):
         element_id = self.exec_script_on_extjs_cmp(
-            "return extCmp.id"
+            "return extCmp.button.%s.id" % self.input_element
         )
         return self.driver.find_element_by_id(element_id)
