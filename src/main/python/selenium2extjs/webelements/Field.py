@@ -12,6 +12,7 @@ class Field(ExtJSComponent):
         '''
         Constructor
         '''
+        self.input_element = 'inputEl'
         super(Field, self).__init__(driver, query_type, query, top_element)
 
     def get_raw_value(self):
@@ -24,12 +25,14 @@ class Field(ExtJSComponent):
         self.exec_script_on_extjs_cmp("extCmp.reset()")
 
     def reset_value(self):
-        self.exec_script_on_extjs_cmp("extCmp.setValue( '' )")
+        self.exec_script_on_extjs_cmp(
+            "extCmp.%.dom.value=''"
+        )
 
     def send_keys(self, value):
         self.top_element.send_keys(value)
 
     def set_value(self, value):
         return self.exec_script_on_extjs_cmp(
-            "extCmp.setValue('%s')" % value
+            "extCmp.%.dom.value='%s'" % self.input_element
         )
