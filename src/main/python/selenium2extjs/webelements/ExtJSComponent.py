@@ -132,9 +132,9 @@ class ExtJSComponent(ExtJSWebElement):
 
     def get_el_dom(self):
         return self.exec_script_on_extjs_cmp("return extCmp.getEl().dom")
-    
+
     def get_all_comp_ids(self):
-        js_code = SCRIPT_QUERY_CMP_ALL_IDS % self.query 
+        js_code = SCRIPT_QUERY_CMP_ALL_IDS % self.query
         return self.exec_script_clean(js_code)
 
     def get_component_id(self):
@@ -155,6 +155,7 @@ class ExtJSComponent(ExtJSWebElement):
              execScriptOnExtJsComponent("return extCmp.getValue()");
         will run theJavaScript method getValue on the ExtJS component object.
     '''
+
     def exec_script_on_extjs_cmp(self, js_code):
         script = "var extCmp = Ext.getCmp('%s'); %s;" % (
             self.get_component_id(),
@@ -185,6 +186,7 @@ class ExtJSComponent(ExtJSWebElement):
      which contains the ID provided by getId()
      @return String
      '''
+
     def get_xpath(self):
         return "%s return getPathTo(%s" % (
             FUNCTION_getXPathTo, self.top_element
@@ -194,4 +196,10 @@ class ExtJSComponent(ExtJSWebElement):
         return "Ext.getCmp('%s')" % self.get_component_id()
 
     def get_element(self):
-        pass
+        return self.driver.find_element_by_id(self.get_element_id())
+
+    def get_element_id(self):
+        element_id = self.exec_script_on_extjs_cmp(
+            "return extCmp.%s.id" % self.cmp_element
+        )
+        return element_id

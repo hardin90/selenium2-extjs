@@ -12,11 +12,5 @@ class Button(ExtJSComponent):
         '''
         Constructor
         '''
-        self.button_element = "btnEl"
+        self.cmp_element = "btnEl"
         super(Button, self).__init__(driver, query_type, query, top_element)
-
-    def get_element(self):
-        element_id = self.exec_script_on_extjs_cmp(
-            "return extCmp.%s.id" % self.button_element
-        )
-        return self.driver.find_element_by_id(element_id)

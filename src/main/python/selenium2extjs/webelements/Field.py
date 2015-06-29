@@ -12,7 +12,7 @@ class Field(ExtJSComponent):
         '''
         Constructor
         '''
-        self.input_element = 'inputEl'
+        self.cmp_element = 'inputEl'
         super(Field, self).__init__(driver, query_type, query, top_element)
 
     def get_raw_value(self):
@@ -34,5 +34,5 @@ class Field(ExtJSComponent):
 
     def set_value(self, value):
         return self.exec_script_on_extjs_cmp(
-            "extCmp.%.dom.value='%s'" % self.input_element
+            "extCmp.%.dom.value='%s'" % self.cmp_element
         )

@@ -1,5 +1,4 @@
 '''
-Created on Jun 22, 2015
 '''
 from selenium2extjs.webelements.Field import Field
 
