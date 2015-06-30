@@ -26,7 +26,7 @@ class Field(ExtJSComponent):
 
     def reset_value(self):
         self.exec_script_on_extjs_cmp(
-            "extCmp.%.dom.value=''"
+            "extCmp.%s.dom.value=''" % self.cmp_element
         )
 
     def send_keys(self, value):
@@ -34,5 +34,5 @@ class Field(ExtJSComponent):
 
     def set_value(self, value):
         return self.exec_script_on_extjs_cmp(
-            "extCmp.%.dom.value='%s'" % self.cmp_element
+            "extCmp.%s.dom.value='%s'" % (self.cmp_element, value)
         )
